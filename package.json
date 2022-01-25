@@ -4,11 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "env NODE_ENV=production webpack",
+    "start": "env NODE_ENV=development nodemon server.js",
+    "dev": "concurrently \"env NODE_ENV=development nodemon server.js \" \"env NODE_ENV=development webpack serve --open\""
   },
   "keywords": [
     "chess"
   ],
   "author": "alexh",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }
