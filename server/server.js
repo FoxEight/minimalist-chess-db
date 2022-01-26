@@ -25,8 +25,8 @@ const queryController = require('../controllers/queryController.js');
 
 app.get('/query', queryController.getGames, (req, res) => {
   console.log('in final middleware');
-  return res.status(200).json(res.locals.gameData);
-
+  console.log(res.locals.gameData);
+  return res.status(200).set('Access-Control-Allow-Origin', '*').json(res.locals.gameData);
 });
 
 app.use((req, res) => {
@@ -43,8 +43,8 @@ app.use((err, req, res, next) => {
   const newError = {
     ...errorObj,
     log,
-    message
-  }
+    message,
+  };
   res.status(300).json(errorObj);
 });
 
