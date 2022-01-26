@@ -1,4 +1,4 @@
-const { query } = require('express');
+// const { query } = require('express');
 const db = require('../db');
 
 const queryController = {};
@@ -11,24 +11,19 @@ queryController.getGames = async (req, res, next) => {
       'SELECT g.date, g.fen, g.termination, g.link, g.black, p.first_name as w_first_name, p.first_name as w_first_name, p.last_name as w_last_name, p.handle as w_handle, p.elo as w_elo from games g LEFT JOIN players p ON g.white = p._id;';
 
     let whiteRes = await db.query(queryText);
-    whiteRes = whiteRes.rows[0];
 
+    whiteRes = whiteRes.rows[0];
     const blackId = whiteRes.black;
-    console.log({ blackId });
     delete whiteRes.black;
     res.locals.gameData = whiteRes;
 
     const params = [blackId];
-    console.log(params);
     const blackQuery =
       'SELECT p.first_name as b_first_name, p.first_name as b_first_name, p.last_name as b_last_name, p.handle as b_handle, p.elo as b_elo FROM players p WHERE p._id = $1;';
-    console.log('white res', whiteRes);
 
-    let blackRes = await db.query(blackQuery, [blackId]);
-    console.log('black res', blackRes.rows[0]);
+    let blackRes = await db.query(blackQuery, params);
 
     for (const item in blackRes.rows[0]) {
-      console.log(item, blackRes.rows[0][item]);
       res.locals.gameData[item] = blackRes.rows[0][item];
     }
     return next();

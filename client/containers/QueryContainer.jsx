@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import QueryDisplay from '../components/QueryDisplay.jsx';
 
 class QueryContainer extends Component {
   constructor(props) {
     super();
     this.handleQueryClick = this.handleQueryClick.bind(this);
+    this.state = {
+      games: [],
+    };
   }
 
   handleQueryClick() {
@@ -13,51 +17,29 @@ class QueryContainer extends Component {
         'Access-Control-Allow-Origin': '*',
       },
     })
-      // method: 'GET',
-      // header: {
-      //   'Access-Control-Allow-Origin': '*',
-      // },
-      // headers: {
-      //   'Content-Type': 'application/json',
-      //   // 'Access-Control-Allow-Origin': 'http://localhost:3000',
-      // },
-      // mode: 'no-cors',
-      // })
       .then(res => {
-        console.log('back at front end', Date.now());
-        console.log(res.body);
+        console.log('back at front end');
         return res.json();
       })
       .then(data => {
         console.log('after parse');
         console.log(data);
+        this.setState(prevState => {
+          prevState.games = [data];
+          return prevState;
+        });
       })
       .catch(err => console.log('ERROR FRONT END', err));
-
-    // console.log(res)
-
-    //     const data = await res.json();
-
-    //     console.log(data)
-
-    //     // .then(res => {
-    //     //   console.log('back at front end', Date.now());
-    //     //   console.log(res)
-
-    //     //   return res.json();
-    //     //   }).then(data => {
-
-    //     //     console.log(data);
-    //     //   }
-
-    //       } catch (err) {
-    //       console.log('ERROR FRONT END')
-    //       console.log(err)
-    //         }
   }
 
   render() {
-    return <button onClick={this.handleQueryClick}>Query DB</button>;
+    console.log('rendering');
+    return (
+      <div className="parent-query-container">
+        <button onClick={this.handleQueryClick}>Query DB</button>
+        <QueryDisplay gameData={this.state.games} />
+      </div>
+    );
   }
 }
 
