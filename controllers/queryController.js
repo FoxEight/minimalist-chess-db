@@ -12,20 +12,29 @@ queryController.getGames = async (req, res, next) => {
 
     let whiteRes = await db.query(queryText);
 
-    whiteRes = whiteRes.rows[0];
-    const blackId = whiteRes.black;
-    delete whiteRes.black;
-    res.locals.gameData = whiteRes;
+    console.log(whiteRes);
 
-    const params = [blackId];
-    const blackQuery =
-      'SELECT p.first_name as b_first_name, p.first_name as b_first_name, p.last_name as b_last_name, p.handle as b_handle, p.elo as b_elo FROM players p WHERE p._id = $1;';
+    whiteRes = whiteRes.rows;
 
-    let blackRes = await db.query(blackQuery, params);
+    res.locals.gameData = [];
 
-    for (const item in blackRes.rows[0]) {
-      res.locals.gameData[item] = blackRes.rows[0][item];
+    for (const game of whiteRes) {
+      const blackId = game.black;
+      delete game.black;
+      const params = [blackId];
+      const blackQuery =
+        'SELECT p.first_name as b_first_name, p.first_name as b_first_name, p.last_name as b_last_name, p.handle as b_handle, p.elo as b_elo FROM players p WHERE p._id = $1;';
+
+      let blackRes = await db.query(blackQuery, params);
+
+      for (const item in blackRes.rows[0]) {
+        game[item] = blackRes.rows[0][item];
+        // res.locals.gameData[item] = blackRes.rows[0][item];
+      }
+      console.log('GAME', game);
+      res.locals.gameData.push(game);
     }
+    console.log(res.locals.gameData);
     return next();
   } catch (err) {
     return next({

@@ -25,7 +25,7 @@ class QueryContainer extends Component {
         console.log('after parse');
         console.log(data);
         this.setState(prevState => {
-          prevState.games = [data];
+          prevState.games = data;
           return prevState;
         });
       })

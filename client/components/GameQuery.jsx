@@ -39,7 +39,7 @@ class GameQuery extends Component {
               this.props.displayGame(fen);
             }}
           >
-            Display Games
+            Display Game
           </button>
         </div>
       );
