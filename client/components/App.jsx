@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Board from './Board.jsx';
+import QueryContainer from '../containers/QueryContainer.jsx';
 
 class App extends Component {
   // constructor() {
@@ -11,6 +12,7 @@ class App extends Component {
       <div className="center-container">
         <h1>Some Shit About Chess</h1>
         <Board />
+        <QueryContainer />
       </div>
     );
   }

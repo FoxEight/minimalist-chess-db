@@ -15,8 +15,17 @@ const pool = new Pool();
 // });
 
 app.get('/query', (req, res) => {
+  console.log('QUERYING');
   const queryText = 'SELECT * from games;';
-  pool.query(queryText);
+  pool.query(queryText, (err, queryRes) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(queryRes);
+    }
+  });
+  // .then(queryRes => console.log(queryRes))
+  // .catch(err => console.log(err));
 });
 
 app.use((req, res) => {
