@@ -1,6 +1,8 @@
 .board-embed-frame {
   width: 760px;
   height: 480px;
+  background-color: gray;
+  margin-bottom: 20px;
 }
 
 .center-container {

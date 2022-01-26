@@ -6,7 +6,14 @@ class QueryContainer extends Component {
   }
 
   handleQueryClick() {
-    fetch('http://localhost:3000/query').then(data => console.log(data));
+    fetch('http://localhost:3000/query').then(res => res.json()).then(data => {
+        console.log('back at front end');
+        console.log(data);
+      }).catch(err => {
+      console.log('ERROR FRONT END')
+      console.log(err)
+  }
+      )
   }
 
   render() {
