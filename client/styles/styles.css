@@ -1,0 +1,17 @@
+.board-embed-frame {
+  width: 760px;
+  height: 480px;
+}
+
+.center-container {
+  width: 1000px;
+  margin: 50px auto;
+}
+
+body {
+  background-color: blue;
+}
+
+h1 {
+  color: red;
+}

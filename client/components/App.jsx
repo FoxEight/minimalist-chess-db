@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Board from './Board.jsx';
 
 class App extends Component {
   // constructor() {
@@ -7,8 +8,9 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="center-container">
         <h1>Some Shit About Chess</h1>
+        <Board />
       </div>
     );
   }
