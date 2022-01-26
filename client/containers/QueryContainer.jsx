@@ -37,7 +37,7 @@ class QueryContainer extends Component {
     return (
       <div className="parent-query-container">
         <button onClick={this.handleQueryClick}>Query DB</button>
-        <QueryDisplay gameData={this.state.games} />
+        <QueryDisplay gameData={this.state.games} displayGame={this.props.displayGame} />
       </div>
     );
   }

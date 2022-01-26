@@ -1,8 +1,9 @@
 .board-embed-frame {
-  width: 760px;
-  height: 480px;
+  width: 400px;
+  height: 200px;
   background-color: gray;
   margin-bottom: 20px;
+  padding: 40px;
 }
 
 .center-container {
@@ -12,8 +13,13 @@
 
 .the-query-display {
   height: 200px;
-  width: 750px;
+  width: 800px;
   background-color: white;
+  padding-top: 10px;
+}
+
+.the-query-display ul {
+  list-style: none;
 }
 
 body {
