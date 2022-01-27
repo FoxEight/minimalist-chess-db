@@ -55,6 +55,17 @@ app.post(
   }
 );
 
+app.post('/login', userController.verifyUser, userController.login, (req, res) => {
+  console.log('in final login middleware');
+  // let message;
+  // res.locals.verified ? (message = 'Success!') : (message = 'Invalid username or password');
+  let message = 'testerrrr';
+  res.status(200).set('Access-Control-Allow-Origin', '*').json(message);
+  // res.set('crossOrigin', true);
+  // console.log(res.headers);
+  // res.send(message);
+});
+
 app.use((req, res) => {
   console.log('404 error route');
   res.sendStatus(404);

@@ -51,13 +51,24 @@ class App extends Component {
     });
   };
 
+  loggedInSuccessfully = function () {
+    this.setState(prevState => {
+      const newState = {
+        ...prevState,
+        isLoggedIn: true,
+      };
+      console.log(newState);
+      return newState;
+    });
+  };
+
   render() {
     console.log('rendering');
     if (this.state.needsAccount) {
       return <CreateAccount addedNewUser={this.addedNewUser} />;
     }
 
-    if (!this.state.token) {
+    if (!this.state.isLoggedIn) {
       return <Login handleCreateClick={this.handleCreateClick} />;
     }
 

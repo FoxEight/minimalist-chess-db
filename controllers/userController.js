@@ -1,9 +1,26 @@
 const db = require('../db');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const userController = {};
 
 userController.encryptPW = (req, res, next) => {
-  const { pw } = req.query.password;
+  console.log('encryptPW middleware');
+  console.log(req.query);
+  const { password: pw } = req.query;
+  console.log(pw);
+
+  const hashedPW = bcrypt.hash(pw, saltRounds, (err, hash) => {
+    if (err)
+      return next({
+        log: `Error in userController.encryptPW. ERROR: ${err}`,
+        message: { err: 'Error in userController.encryptPW. See log for details.' },
+      });
+    else {
+      req.query.password = hash;
+      return next();
+    }
+  });
 };
 
 userController.createAccount = async (req, res, next) => {
@@ -35,8 +52,19 @@ userController.createAccount = async (req, res, next) => {
       message: { err: 'Error in userController.createAccount. See log for details.' },
     });
   }
+};
 
-  // res.locals.data = req.body;
+userController.verifyUser = (req, res, next) => {
+  console.log('in verify user middleware');
+  console.log(req.query);
+  res.locals.verified = true;
+  return next();
+};
+
+userController.login = (req, res, next) => {
+  console.log('in login middleware');
+  // console.log(req.query);
+  return next();
 };
 
 module.exports = userController;
