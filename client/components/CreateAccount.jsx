@@ -4,14 +4,29 @@ export default function (props) {
   // console.log(props.handleCreateAccountClick);
 
   const [username, setUsername] = useState('');
-  const [password, setpassword] = useState('');
+  const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
 
   function handleUserNameChange(e) {
     setUsername(e.target.value);
   }
 
   function handlePasswordChange(e) {
-    setpassword(e.target.value);
+    setPassword(e.target.value);
+  }
+
+  function handleFirstNameChange(e) {
+    setFirstName(e.target.value);
+  }
+
+  function handleLastNameChange(e) {
+    setLastName(e.target.value);
+  }
+
+  function handleEmailChange(e) {
+    setEmail(e.target.value);
   }
 
   /*
@@ -22,14 +37,13 @@ export default function (props) {
   function handleSubmit(event) {
     event.preventDefault();
     console.log('form submit');
-    console.log(username, password);
-    const bodyToSend = JSON.stringify({
-      username,
-      password,
-    });
-    const url = `http://localhost:3000/createaccount/?username=${username}&password=${password}`;
+    // console.log(username, password);
+    // const bodyToSend = JSON.stringify({
+    //   username,
+    //   password,
+    // });
+    const url = `http://localhost:3000/createaccount/?firstName=${firstName}&lastName=${lastName}&username=${username}&password=${password}&email=${email}`;
 
-    console.log(bodyToSend);
     const options = {
       method: 'POST',
       header: {
@@ -41,7 +55,16 @@ export default function (props) {
       // body: bodyToSend,
     };
 
-    fetch(url, options).then(res => console.log(res));
+    fetch(url, options)
+      .then(res => {
+        console.log(res);
+        return res.json();
+      })
+      .then(data => {
+        console.log(data);
+        props.addedNewUser();
+      })
+      .catch(err => console.log(err));
 
     // const http = new XMLHttpRequest();
 
@@ -59,6 +82,26 @@ export default function (props) {
     <div>
       <h2>This is the Create Account Page</h2>
       <form id="form-create-account" onSubmit={handleSubmit}>
+        <label htmlFor="first-name">
+          First Name ---
+          <input
+            type="text"
+            id="first-name"
+            name="first-name"
+            value={firstName}
+            onChange={handleFirstNameChange}
+          />
+        </label>
+        <label htmlFor="last-name">
+          Last Name ---
+          <input
+            type="text"
+            id="last-name"
+            name="last-name"
+            value={lastName}
+            onChange={handleLastNameChange}
+          />
+        </label>
         <label htmlFor="username">
           Username ---
           <input
@@ -78,6 +121,10 @@ export default function (props) {
             value={password}
             onChange={handlePasswordChange}
           />
+        </label>
+        <label htmlFor="email">
+          Email ---
+          <input type="text" id="email" name="email" value={email} onChange={handleEmailChange} />
         </label>
         <input type="submit" value="Create Account" />
       </form>

@@ -2,23 +2,37 @@ const db = require('../db');
 
 const userController = {};
 
-userController.createAccount = (req, res, next) => {
+userController.createAccount = async (req, res, next) => {
   console.log(req);
   // console.log('request body', req.body);
   console.log('request query', req.query);
 
-  const queryText = 'INSERT INTO users ';
+  const params = [];
 
-  db.query();
+  for (const datapoint in req.query) {
+    params.push(req.query[datapoint]);
+  }
 
-  if (req.body === {}) {
+  console.log(params);
+
+  const queryText = 'INSERT INTO users VALUES(DEFAULT, $1, $2, $3, $4, $5)';
+
+  try {
+    const insertedUser = await db.query(queryText, params);
+
+    console.log(insertedUser);
+
+    res.locals.insertedUser = insertedUser;
+
+    return next();
+  } catch (err) {
     return next({
-      log: 'no request body in userController.createAccount',
-      message: { err: 'See log' },
+      log: `Error in userController.createAccount. ERROR: ${err}`,
+      message: { err: 'Error in userController.createAccount. See log for details.' },
     });
   }
-  res.locals.data = req.body;
-  return next();
+
+  // res.locals.data = req.body;
 };
 
 module.exports = userController;

@@ -16,7 +16,8 @@ class App extends Component {
     };
     this.displayGame = this.displayGame.bind(this);
     this.handleCreateClick = this.handleCreateClick.bind(this);
-    this.handleCreateAccountClick = this.handleCreateAccountClick.bind(this);
+    // this.handleCreateAccountClick = this.handleCreateAccountClick.bind(this);
+    this.addedNewUser = this.addedNewUser.bind(this);
   }
 
   displayGame(fen) {
@@ -39,47 +40,21 @@ class App extends Component {
     });
   }
 
-  handleCreateAccountClick = function (event) {
-    // event.preventDefault();
-    // console.log('form submit');
-    // console.log(event.target);
-    // const bodyToSend = JSON.stringify({
-    //   username: document.getElementById('username').value,
-    //   password: document.getElementById('password').value,
-    // });
-    // console.log(bodyToSend);
-    // const options = {
-    //   method: 'POST',
-    //   header: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //     'Access-Control-Allow-Origin': '*',
-    //   },
-    //   // mode: 'no-cors',
-    //   body: bodyToSend,
-    // };
-    // fetch(
-    //   'http://localhost:3000/createaccount',
-    //   options
-    //   // {
-    //   // method: 'POST',
-    //   // header: {
-    //   //   'Content-Type': 'application/json',
-    //   //   'Access-Control-Allow-Origin': '*',
-    //   // },
-    //   // // mode: 'cors',
-    //   // body: JSON.stringify({
-    //   //   username: document.getElementById('username').value,
-    //   //   password: document.getElementById('password').value,
-    //   // }),
-    //   // }
-    // ).then(res => console.log(res));
+  addedNewUser = function () {
+    this.setState(prevState => {
+      const newState = {
+        ...prevState,
+        needsAccount: false,
+      };
+      console.log(newState);
+      return newState;
+    });
   };
 
   render() {
     console.log('rendering');
     if (this.state.needsAccount) {
-      return <CreateAccount handleCreateAccountClick={this.handleCreateAccountClick} />;
+      return <CreateAccount addedNewUser={this.addedNewUser} />;
     }
 
     if (!this.state.token) {
