@@ -1,13 +1,18 @@
 import React from 'react';
 
-export default Login = () => {
+export default function Login(props) {
   return (
     <div>
-      <h1>This is the Login Page</h1>
-      <label>username</label>
-      <input></input>
-      <label>password</label>
-      <input></input>
+      <h2>This is the Login Page</h2>
+      <form>
+        <label>username --> </label>
+        <input></input>
+        <label>password --> </label>
+        <input></input>
+        <button>Login</button>
+      </form>
+      <br></br>
+      <button onClick={props.handleCreateClick}>Create Account</button>
     </div>
   );
-};
+}
