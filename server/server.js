@@ -69,12 +69,24 @@ app.post(
     // let message;
     res.locals.verified ? (message = 'Success!') : (message = 'Invalid username or password');
     // let message = 'testerrrr';
-    res.status(200).set('Access-Control-Allow-Origin', '*').json(message);
+    res
+      .status(200)
+      .set(
+        'Access-Control-Allow-Origin',
+        '*'
+        // 'Access-Control-Allow-Credentials',
+        // true
+        // 'Access-Control-Allow-Headers',
+        // '*'
+      )
+      .json(message);
     // res.set('crossOrigin', true);
     // console.log(res.headers);
     // res.send(message);
   }
 );
+
+//Access-Control-Allow-Credentials value to true. Also, make sure the HTTP headers Access-Control-Allow-Origin and Access-Control-Allow-Headers are set and not with a wildcard *.
 
 app.post('/addfav', queryController.addFavorite, (req, res) => {
   res.status(200).set('Access-Control-Allow-Origin', '*').json('added fav');

@@ -24,7 +24,7 @@ export default function (props) {
       header: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'http://localhost:3000/login',
+        'Access-Control-Allow-Origin': 'http://localhost:3000/',
       },
       // mode: 'no-cors',
     };

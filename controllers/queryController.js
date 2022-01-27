@@ -50,14 +50,17 @@ queryController.addFavorite = async (req, res, next) => {
   try {
     console.log(req.query);
     console.log(req.cookies);
-    const params1 = [Number(req.cookies.ssid)];
-    const queryText1 = 'SELECT _id FROM users WHERE ssid = $1';
+    console.log('ssid', req.cookies.ssid);
+    const params1 = [req.cookies.ssid];
+    const queryText1 = 'SELECT _id FROM users WHERE ssid = $1;';
     const userId = await db.query(queryText1, params1);
 
-    const params2 = [userId, Number(req.query._id)];
-    const queryText2 = 'INSERT INTO favorited_games VALUES (DEFAULT, $1, $2)';
+    console.log(userId);
 
-    db.query;
+    const params2 = [userId, Number(req.query._id)];
+    const queryText2 = 'INSERT INTO favorited_games VALUES (DEFAULT, $1, $2);';
+
+    db.query(queryText2, params2);
 
     return next();
   } catch (err) {

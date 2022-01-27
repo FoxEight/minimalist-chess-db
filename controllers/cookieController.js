@@ -12,7 +12,7 @@ cookieController.setSSIDCookie = function (req, res, next) {
   console.log('in set ssid');
   try {
     res.cookie('ssid', res.locals.ssid, {
-      httpOnly: true,
+      // httpOnly: true,
       // secure: true,
       // expire: 30000,
     });
