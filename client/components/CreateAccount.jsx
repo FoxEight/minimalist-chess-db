@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 export default function (props) {
-  console.log(props.handleCreateAccountClick);
+  // console.log(props.handleCreateAccountClick);
 
   const [username, setUsername] = useState('');
   const [password, setpassword] = useState('');
@@ -34,14 +34,24 @@ export default function (props) {
       body: bodyToSend,
     };
 
-    fetch('http://localhost:3000/createaccount', options).then(res => console.log(res));
+    // fetch('http://localhost:3000/createaccount', options).then(res => console.log(res));
+    const http = new XMLHttpRequest();
+
+    http.open('POST', 'http://localhost:3000/createaccount');
+    http.send(bodyToSend);
+
+    http.onreadystatechange = function () {
+      if (http.readyState === 4) {
+        console.log(http.response);
+      }
+    };
   }
 
   return (
     <div>
       <h2>This is the Create Account Page</h2>
       <form id="form-create-account" onSubmit={handleSubmit}>
-        <label for="username">
+        <label htmlFor="username">
           Username ---
           <input
             type="text"
@@ -51,7 +61,7 @@ export default function (props) {
             onChange={handleUserNameChange}
           />
         </label>
-        <label for="password">
+        <label htmlFor="password">
           Password ---
           <input
             type="text"

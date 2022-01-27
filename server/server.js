@@ -40,7 +40,7 @@ app.get('/query', queryController.getGames, (req, res) => {
 app.post('/createaccount', userController.createAccount, (req, res) => {
   console.log('req body in server', req.body);
   console.log('in final createaccount middleware');
-  res.status(200).set('Access-Control-Allow-Origin', '*').json(res.locals.data);
+  res.status(200).set('Access-Control-Allow-Origin', '*').json({ super: 'duper' });
 });
 
 app.use((req, res) => {
