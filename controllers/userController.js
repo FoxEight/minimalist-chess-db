@@ -54,11 +54,40 @@ userController.createAccount = async (req, res, next) => {
   }
 };
 
-userController.verifyUser = (req, res, next) => {
+userController.verifyUser = async (req, res, next) => {
   console.log('in verify user middleware');
   console.log(req.query);
-  res.locals.verified = true;
-  return next();
+
+  const { username, password } = req.query;
+
+  const params = [username];
+
+  try {
+    const queryText = 'SELECT password FROM users WHERE username = $1';
+    const queryRes = await db.query(queryText, params);
+    console.log('after db query looking for pw');
+    console.log('query res', queryRes);
+    if (!queryRes.rows.length) {
+      console.log('no results');
+      throw Error('NO RESULTS');
+    } else {
+      console.log('here');
+      const dbPass = queryRes.rows[0].password;
+      console.log(dbPass);
+      const match = await bcrypt.compare(password, dbPass);
+      console.log('after bcrypt compare');
+      match ? (res.locals.verified = true) : (res.locals.verified = false);
+      return next();
+    }
+  } catch (err) {
+    console.log('in error');
+    return next({
+      log: `Error in userController.verifyUser. ERROR: ${err}`,
+      message: { err: 'Error in userController.verifyUser. See log for details.' },
+    });
+  }
+
+  // return next();
 };
 
 userController.login = (req, res, next) => {

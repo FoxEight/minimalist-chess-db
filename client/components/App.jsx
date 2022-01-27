@@ -13,11 +13,13 @@ class App extends Component {
       token: false,
       needsAccount: false,
       isLoggedIn: false,
+      logInAttemptMsg: false,
     };
     this.displayGame = this.displayGame.bind(this);
     this.handleCreateClick = this.handleCreateClick.bind(this);
     // this.handleCreateAccountClick = this.handleCreateAccountClick.bind(this);
     this.addedNewUser = this.addedNewUser.bind(this);
+    this.handleLogInAttempt = this.handleLogInAttempt.bind(this);
   }
 
   displayGame(fen) {
@@ -51,15 +53,28 @@ class App extends Component {
     });
   };
 
-  loggedInSuccessfully = function () {
-    this.setState(prevState => {
-      const newState = {
-        ...prevState,
-        isLoggedIn: true,
-      };
-      console.log(newState);
-      return newState;
-    });
+  handleLogInAttempt = function (msg) {
+    if (msg === 'Success!') {
+      console.log('Success state change');
+      this.setState(prevState => {
+        const newState = {
+          ...prevState,
+          isLoggedIn: true,
+        };
+        console.log(newState);
+        return newState;
+      });
+    } else {
+      console.log('Invalid user/pass state change');
+      this.setState(prevState => {
+        const newState = {
+          ...prevState,
+          logInAttemptMsg: msg,
+        };
+        console.log(newState);
+        return newState;
+      });
+    }
   };
 
   render() {
@@ -69,7 +84,13 @@ class App extends Component {
     }
 
     if (!this.state.isLoggedIn) {
-      return <Login handleCreateClick={this.handleCreateClick} />;
+      return (
+        <Login
+          handleCreateClick={this.handleCreateClick}
+          handleLogInAttempt={this.handleLogInAttempt}
+          logInAttemptMsg={this.state.logInAttemptMsg}
+        />
+      );
     }
 
     if (this.state.isLoggedIn)

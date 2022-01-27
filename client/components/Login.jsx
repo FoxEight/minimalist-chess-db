@@ -31,12 +31,16 @@ export default function (props) {
     console.log(options);
     fetch(url, options)
       .then(res => res.json())
-      .then(msg => console.log(msg));
+      .then(msg => {
+        console.log(msg);
+        props.handleLogInAttempt(msg);
+      });
   }
 
   return (
     <div>
       <h2>This is the Login Page</h2>
+      {props.logInAttemptMsg ? <p>{props.logInAttemptMsg}</p> : <p>Nothing Here</p>}
       <form crossOrigin="anonymous" onSubmit={handleOnSubmitLogin}>
         <label htmlFor="username-login">
           Username ---

@@ -55,16 +55,23 @@ app.post(
   }
 );
 
-app.post('/login', userController.verifyUser, userController.login, (req, res) => {
-  console.log('in final login middleware');
-  // let message;
-  // res.locals.verified ? (message = 'Success!') : (message = 'Invalid username or password');
-  let message = 'testerrrr';
-  res.status(200).set('Access-Control-Allow-Origin', '*').json(message);
-  // res.set('crossOrigin', true);
-  // console.log(res.headers);
-  // res.send(message);
-});
+app.post(
+  '/login',
+  userController.verifyUser,
+  userController.login,
+  sessionController.startSession,
+  cookieController.setSSIDCookie,
+  (req, res) => {
+    console.log('in final login middleware');
+    // let message;
+    res.locals.verified ? (message = 'Success!') : (message = 'Invalid username or password');
+    // let message = 'testerrrr';
+    res.status(200).set('Access-Control-Allow-Origin', '*').json(message);
+    // res.set('crossOrigin', true);
+    // console.log(res.headers);
+    // res.send(message);
+  }
+);
 
 app.use((req, res) => {
   console.log('404 error route');
@@ -72,6 +79,7 @@ app.use((req, res) => {
 });
 
 app.use((err, req, res, next) => {
+  console.log('global error handler');
   const errorObj = {
     log: 'An error occured',
     status: 300,
@@ -79,10 +87,12 @@ app.use((err, req, res, next) => {
   };
   const newError = {
     ...errorObj,
-    log,
-    message,
+    log: err.log,
+    message: err.message,
   };
-  res.status(300).json(errorObj);
+
+  res.status(300).set('Access-Control-Allow-Origin', '*').json(newError);
+  // return newError;
 });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
