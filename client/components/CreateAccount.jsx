@@ -14,6 +14,11 @@ export default function (props) {
     setpassword(e.target.value);
   }
 
+  /*
+`http://localhost:3000/user/?user_name=${user_name}&password=${password}`
+// res.query = {user_name: username, password: password}
+  */
+
   function handleSubmit(event) {
     event.preventDefault();
     console.log('form submit');
@@ -22,6 +27,8 @@ export default function (props) {
       username,
       password,
     });
+    const url = `http://localhost:3000/createaccount/?username=${username}&password=${password}`;
+
     console.log(bodyToSend);
     const options = {
       method: 'POST',
@@ -31,20 +38,21 @@ export default function (props) {
         'Access-Control-Allow-Origin': '*',
       },
       // mode: 'no-cors',
-      body: bodyToSend,
+      // body: bodyToSend,
     };
 
-    // fetch('http://localhost:3000/createaccount', options).then(res => console.log(res));
-    const http = new XMLHttpRequest();
+    fetch(url, options).then(res => console.log(res));
 
-    http.open('POST', 'http://localhost:3000/createaccount');
-    http.send(bodyToSend);
+    // const http = new XMLHttpRequest();
 
-    http.onreadystatechange = function () {
-      if (http.readyState === 4) {
-        console.log(http.response);
-      }
-    };
+    // http.open('POST', 'http://localhost:3000/createaccount');
+    // http.send(bodyToSend);
+
+    // http.onreadystatechange = function () {
+    //   if (http.readyState === 4) {
+    //     console.log(http.response);
+    //   }
+    // };
   }
 
   return (

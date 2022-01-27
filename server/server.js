@@ -37,9 +37,11 @@ app.get('/query', queryController.getGames, (req, res) => {
   return res.status(200).set('Access-Control-Allow-Origin', '*').json(res.locals.gameData);
 });
 
-app.post('/createaccount', userController.createAccount, (req, res) => {
+app.post('/createaccount*', userController.createAccount, (req, res) => {
   console.log('req body in server', req.body);
   console.log('in final createaccount middleware');
+  req.body = { this: 'is a test' };
+  console.log(req.body);
   res.status(200).set('Access-Control-Allow-Origin', '*').json({ super: 'duper' });
 });
 
