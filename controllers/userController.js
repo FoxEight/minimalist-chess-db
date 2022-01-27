@@ -2,6 +2,10 @@ const db = require('../db');
 
 const userController = {};
 
+userController.encryptPW = (req, res, next) => {
+  const { pw } = req.query.password;
+};
+
 userController.createAccount = async (req, res, next) => {
   // console.log(req);
   // console.log('request body', req.body);

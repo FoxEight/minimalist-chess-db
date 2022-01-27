@@ -41,6 +41,7 @@ app.get('/query', queryController.getGames, (req, res) => {
 
 app.post(
   '/createaccount*',
+  userController.encryptPW,
   userController.createAccount,
   cookieController.setCookie,
   sessionController.startSession,
