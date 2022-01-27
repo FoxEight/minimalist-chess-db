@@ -17,8 +17,10 @@ const db = require('../db');
 
 const queryController = require('../controllers/queryController.js');
 const userController = require('../controllers/userController.js');
+const cookieController = require('../controllers/cookieController.js');
+const sessionController = require('../controllers/sessionController');
 
-console.log(userController);
+// console.log(userController);
 
 // app.use(express.static(path.resolve(__dirname, './client/src')));
 
@@ -33,17 +35,24 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/query', queryController.getGames, (req, res) => {
   console.log('in final query middleware');
-  console.log(res.locals.gameData);
+  // console.log(res.locals.gameData);
   return res.status(200).set('Access-Control-Allow-Origin', '*').json(res.locals.gameData);
 });
 
-app.post('/createaccount*', userController.createAccount, (req, res) => {
-  console.log('req body in server', req.body);
-  console.log('in final createaccount middleware');
-  // req.body = { this: 'is a test' };
-  // console.log(req.body);
-  res.status(200).set('Access-Control-Allow-Origin', '*').json(res.locals.insertedUser);
-});
+app.post(
+  '/createaccount*',
+  userController.createAccount,
+  cookieController.setCookie,
+  sessionController.startSession,
+  cookieController.setSSIDCookie,
+  (req, res) => {
+    // console.log('req body in server', req.body);
+    console.log('in final createaccount middleware');
+    // req.body = { this: 'is a test' };
+    // console.log(req.body);
+    res.status(200).set('Access-Control-Allow-Origin', '*').json(res.locals.insertedUser);
+  }
+);
 
 app.use((req, res) => {
   console.log('404 error route');

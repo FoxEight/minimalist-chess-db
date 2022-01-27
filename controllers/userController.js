@@ -3,9 +3,9 @@ const db = require('../db');
 const userController = {};
 
 userController.createAccount = async (req, res, next) => {
-  console.log(req);
+  // console.log(req);
   // console.log('request body', req.body);
-  console.log('request query', req.query);
+  // console.log('request query', req.query);
 
   const params = [];
 
@@ -20,7 +20,7 @@ userController.createAccount = async (req, res, next) => {
   try {
     const insertedUser = await db.query(queryText, params);
 
-    console.log(insertedUser);
+    // console.log(insertedUser);
 
     res.locals.insertedUser = insertedUser;
 
