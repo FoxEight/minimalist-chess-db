@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 // const { Pool, Client } = require('pg');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const PORT = 3000;
 
@@ -19,6 +20,7 @@ const queryController = require('../controllers/queryController.js');
 const userController = require('../controllers/userController.js');
 const cookieController = require('../controllers/cookieController.js');
 const sessionController = require('../controllers/sessionController');
+const { query } = require('express');
 
 // console.log(userController);
 
@@ -31,6 +33,7 @@ const sessionController = require('../controllers/sessionController');
 
 app.use(express.json());
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/query', queryController.getGames, (req, res) => {
@@ -72,6 +75,10 @@ app.post(
     // res.send(message);
   }
 );
+
+app.post('/addfav', queryController.addFavorite, (req, res) => {
+  res.status(200).set('Access-Control-Allow-Origin', '*').json('added fav');
+});
 
 app.use((req, res) => {
   console.log('404 error route');

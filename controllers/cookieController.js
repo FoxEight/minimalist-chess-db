@@ -13,8 +13,8 @@ cookieController.setSSIDCookie = function (req, res, next) {
   try {
     res.cookie('ssid', res.locals.ssid, {
       httpOnly: true,
-      secure: true,
-      expire: 30000,
+      // secure: true,
+      // expire: 30000,
     });
     return next();
   } catch (err) {

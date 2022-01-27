@@ -6,11 +6,11 @@ const userController = {};
 
 userController.encryptPW = (req, res, next) => {
   console.log('encryptPW middleware');
-  console.log(req.query);
+  // console.log(req.query);
   const { password: pw } = req.query;
-  console.log(pw);
+  // console.log(pw);
 
-  const hashedPW = bcrypt.hash(pw, saltRounds, (err, hash) => {
+  bcrypt.hash(pw, saltRounds, (err, hash) => {
     if (err)
       return next({
         log: `Error in userController.encryptPW. ERROR: ${err}`,
@@ -34,7 +34,7 @@ userController.createAccount = async (req, res, next) => {
     params.push(req.query[datapoint]);
   }
 
-  console.log(params);
+  // console.log(params);
 
   const queryText = 'INSERT INTO users VALUES(DEFAULT, $1, $2, $3, $4, $5)';
 
@@ -56,7 +56,7 @@ userController.createAccount = async (req, res, next) => {
 
 userController.verifyUser = async (req, res, next) => {
   console.log('in verify user middleware');
-  console.log(req.query);
+  // console.log(req.query);
 
   const { username, password } = req.query;
 
@@ -65,22 +65,22 @@ userController.verifyUser = async (req, res, next) => {
   try {
     const queryText = 'SELECT password FROM users WHERE username = $1';
     const queryRes = await db.query(queryText, params);
-    console.log('after db query looking for pw');
-    console.log('query res', queryRes);
+    // console.log('after db query looking for pw');
+    // console.log('query res', queryRes);
     if (!queryRes.rows.length) {
-      console.log('no results');
+      // console.log('no results');
       throw Error('NO RESULTS');
     } else {
-      console.log('here');
+      // console.log('here');
       const dbPass = queryRes.rows[0].password;
-      console.log(dbPass);
+      // console.log(dbPass);
       const match = await bcrypt.compare(password, dbPass);
-      console.log('after bcrypt compare');
+      // console.log('after bcrypt compare');
       match ? (res.locals.verified = true) : (res.locals.verified = false);
       return next();
     }
   } catch (err) {
-    console.log('in error');
+    // console.log('in error');
     return next({
       log: `Error in userController.verifyUser. ERROR: ${err}`,
       message: { err: 'Error in userController.verifyUser. See log for details.' },

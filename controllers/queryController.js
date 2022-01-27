@@ -4,11 +4,11 @@ const db = require('../db');
 const queryController = {};
 
 queryController.getGames = async (req, res, next) => {
-  console.log('QUERYING');
+  console.log('GETTING ALL GAMES');
 
   try {
     const queryText =
-      'SELECT g.date, g.fen, g.termination, g.link, g.black, p.first_name as w_first_name, p.first_name as w_first_name, p.last_name as w_last_name, p.handle as w_handle, p.elo as w_elo from games g LEFT JOIN players p ON g.white = p._id;';
+      'SELECT g._id, g.date, g.fen, g.termination, g.link, g.black, p.first_name as w_first_name, p.first_name as w_first_name, p.last_name as w_last_name, p.handle as w_handle, p.elo as w_elo from games g LEFT JOIN players p ON g.white = p._id;';
 
     let whiteRes = await db.query(queryText);
 
@@ -42,6 +42,63 @@ queryController.getGames = async (req, res, next) => {
       message: { err: 'Error in queryController.getGames. See log for more deets' },
     });
   }
+};
+
+queryController.addFavorite = async (req, res, next) => {
+  console.log('in add fav');
+
+  try {
+    console.log(req.query);
+    console.log(req.cookies);
+    const params1 = [Number(req.cookies.ssid)];
+    const queryText1 = 'SELECT _id FROM users WHERE ssid = $1';
+    const userId = await db.query(queryText1, params1);
+
+    const params2 = [userId, Number(req.query._id)];
+    const queryText2 = 'INSERT INTO favorited_games VALUES (DEFAULT, $1, $2)';
+
+    db.query;
+
+    return next();
+  } catch (err) {
+    return next({
+      log: 'Error in queryController.addFavorite. Error: ' + err,
+      message: { err: 'Error in queryController.addFavorite. See log for more deets' },
+    });
+  }
+};
+
+queryController.getFavorites = async (req, res, next) => {
+  // console.log('GETTING FAVORITE GAMES');
+  // try {
+  //   const queryText =
+  //     'SELECT g.date, g.fen, g.termination, g.link, g.black, p.first_name as w_first_name, p.first_name as w_first_name, p.last_name as w_last_name, p.handle as w_handle, p.elo as w_elo from games g LEFT JOIN players p ON g.white = p._id;';
+  //   let whiteRes = await db.query(queryText);
+  //   console.log(whiteRes);
+  //   whiteRes = whiteRes.rows;
+  //   res.locals.gameData = [];
+  //   for (const game of whiteRes) {
+  //     const blackId = game.black;
+  //     delete game.black;
+  //     const params = [blackId];
+  //     const blackQuery =
+  //       'SELECT p.first_name as b_first_name, p.first_name as b_first_name, p.last_name as b_last_name, p.handle as b_handle, p.elo as b_elo FROM players p WHERE p._id = $1;';
+  //     let blackRes = await db.query(blackQuery, params);
+  //     for (const item in blackRes.rows[0]) {
+  //       game[item] = blackRes.rows[0][item];
+  //       // res.locals.gameData[item] = blackRes.rows[0][item];
+  //     }
+  //     console.log('GAME', game);
+  //     res.locals.gameData.push(game);
+  //   }
+  //   console.log(res.locals.gameData);
+  //   return next();
+  // } catch (err) {
+  //   return next({
+  //     log: 'Error in queryController.getGames. Error: ' + err,
+  //     message: { err: 'Error in queryController.getGames. See log for more deets' },
+  //   });
+  // }
 };
 
 // , (err, queryRes) => {

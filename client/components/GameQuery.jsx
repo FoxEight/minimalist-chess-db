@@ -7,6 +7,7 @@ class GameQuery extends Component {
 
   render() {
     const {
+      _id,
       date,
       fen,
       termination,
@@ -36,7 +37,7 @@ class GameQuery extends Component {
           </span>
           <button
             onClick={() => {
-              this.props.displayGame(fen);
+              this.props.displayGame(fen, _id);
             }}
           >
             Display Game

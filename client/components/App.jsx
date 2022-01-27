@@ -10,6 +10,7 @@ class App extends Component {
     super();
     this.state = {
       embedUrl: false,
+      gameId: undefined,
       token: false,
       needsAccount: false,
       isLoggedIn: false,
@@ -22,11 +23,11 @@ class App extends Component {
     this.handleLogInAttempt = this.handleLogInAttempt.bind(this);
   }
 
-  displayGame(fen) {
+  displayGame(fen, gameId) {
     const embedUrl = 'https://fritz.chessbase.com?fen=' + fen;
     console.log(embedUrl);
     console.log(fen);
-    this.setState({ embedUrl });
+    this.setState({ gameId, embedUrl });
   }
 
   handleCreateClick() {
@@ -97,7 +98,7 @@ class App extends Component {
       return (
         <div className="center-container">
           <h1>Some Shit About Chess</h1>
-          <Board embedUrl={this.state.embedUrl} />
+          <Board embedUrl={this.state.embedUrl} gameId={this.state.gameId} />
           <QueryContainer displayGame={this.displayGame} />
         </div>
       );
