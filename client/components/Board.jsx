@@ -1,3 +1,4 @@
+// import cookieParser from 'cookie-parser';
 import React, { Component } from 'react';
 
 class Board extends Component {
@@ -12,6 +13,7 @@ class Board extends Component {
 
     const options = {
       method: 'POST',
+
       header: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
