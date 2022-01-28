@@ -99,7 +99,7 @@ class App extends Component {
     if (this.state.isLoggedIn)
       return (
         <div className="center-container">
-          <h1>Some Shit About Chess</h1>
+          <h1>The ULTIMATE Minimalist Chess Database</h1>
           <Board
             embedUrl={this.state.embedUrl}
             gameId={this.state.gameId}

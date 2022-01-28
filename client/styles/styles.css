@@ -1,6 +1,6 @@
 .board-embed-frame {
-  width: 500px;
-  height: 400px;
+  width: 700px;
+  height: 450px;
   background-color: gray;
   margin-bottom: 20px;
   padding: 40px;
@@ -27,5 +27,5 @@ body {
 }
 
 h1 {
-  color: red;
+  color: #000;
 }
