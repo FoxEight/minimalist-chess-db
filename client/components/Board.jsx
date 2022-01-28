@@ -9,7 +9,7 @@ class Board extends Component {
   }
 
   addFavToDB = function () {
-    const url = `http://localhost:3000/addfav/?_id=${this.props.gameId}`;
+    const url = `http://localhost:3000/addfav/?gameId=${this.props.gameId}&curUserId=${this.props.curUserId}`;
 
     const options = {
       method: 'POST',

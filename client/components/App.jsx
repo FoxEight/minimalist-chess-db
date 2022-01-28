@@ -14,6 +14,7 @@ class App extends Component {
       token: false,
       needsAccount: false,
       isLoggedIn: false,
+      curUserId: undefined,
       logInAttemptMsg: false,
     };
     this.displayGame = this.displayGame.bind(this);
@@ -54,13 +55,14 @@ class App extends Component {
     });
   };
 
-  handleLogInAttempt = function (msg) {
-    if (msg === 'Success!') {
+  handleLogInAttempt = function (res) {
+    if (res.message === 'Success!') {
       console.log('Success state change');
       this.setState(prevState => {
         const newState = {
           ...prevState,
           isLoggedIn: true,
+          curUserId: res.curUserId,
         };
         console.log(newState);
         return newState;
@@ -70,7 +72,7 @@ class App extends Component {
       this.setState(prevState => {
         const newState = {
           ...prevState,
-          logInAttemptMsg: msg,
+          logInAttemptMsg: res.message,
         };
         console.log(newState);
         return newState;
@@ -79,7 +81,7 @@ class App extends Component {
   };
 
   render() {
-    console.log('rendering');
+    console.log('rendering', this.state.curUserId);
     if (this.state.needsAccount) {
       return <CreateAccount addedNewUser={this.addedNewUser} />;
     }
@@ -98,7 +100,11 @@ class App extends Component {
       return (
         <div className="center-container">
           <h1>Some Shit About Chess</h1>
-          <Board embedUrl={this.state.embedUrl} gameId={this.state.gameId} />
+          <Board
+            embedUrl={this.state.embedUrl}
+            gameId={this.state.gameId}
+            curUserId={this.state.curUserId}
+          />
           <QueryContainer displayGame={this.displayGame} />
         </div>
       );

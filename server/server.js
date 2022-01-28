@@ -79,7 +79,7 @@ app.post(
         // 'Access-Control-Allow-Headers',
         // '*'
       )
-      .json(message);
+      .json({ message, curUserId: res.locals.curUserId });
     // res.set('crossOrigin', true);
     // console.log(res.headers);
     // res.send(message);
@@ -90,6 +90,12 @@ app.post(
 
 app.post('/addfav', queryController.addFavorite, (req, res) => {
   res.status(200).set('Access-Control-Allow-Origin', '*').json('added fav');
+});
+
+app.get('/query/byplayer', queryController.getGamesByPlayer, (req, res) => {
+  console.log('final query by player middleware');
+  console.log(res.locals.gameData);
+  res.status(200).set('Access-Control-Allow-Origin', '*').json(res.locals.gameData);
 });
 
 app.use((req, res) => {

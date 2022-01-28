@@ -1,4 +1,5 @@
 // const { query } = require('express');
+const { ParameterStatusMessage } = require('pg-protocol/dist/messages');
 const db = require('../db');
 
 const queryController = {};
@@ -67,6 +68,83 @@ queryController.addFavorite = async (req, res, next) => {
     return next({
       log: 'Error in queryController.addFavorite. Error: ' + err,
       message: { err: 'Error in queryController.addFavorite. See log for more deets' },
+    });
+  }
+};
+
+queryController.getGamesByPlayer = async (req, res, next) => {
+  console.log('in get games by player');
+  console.log(req.query);
+
+  try {
+    const { firstName, lastName } = req.query;
+
+    const params = [firstName, lastName];
+    console.log(params);
+
+    const getPlayerId = 'SELECT _id FROM players WHERE first_name = $1 AND last_name = $2;';
+
+    const playerId = await db.query(getPlayerId, params);
+    console.log(playerId);
+
+    const params2 = [Number(playerId.rows[0]._id)];
+    console.log(params2);
+    console.log(typeof params2[0]);
+
+    // const queryText =
+    //   'SELECT g._id, g.date, g.fen, g.termination, g.link, g.black, p.first_name as w_first_name, p.first_name as w_first_name, p.last_name as w_last_name, p.handle as w_handle, p.elo as w_elo from games g LEFT OUTER JOIN players p ON g.white = $1;';
+
+    const queryText =
+      'SELECT g._id, g.date, g.fen, g.termination, g.link, g.black, g.white from games g WHERE g.white = $1;';
+
+    let gameRes = await db.query(queryText, params2);
+
+    console.log('GAME RES', gameRes.rows);
+
+    gameRes = gameRes.rows;
+
+    res.locals.gameData = [];
+
+    for (const game of gameRes) {
+      const blackId = game.black;
+      delete game.black;
+      const params = [blackId];
+      const blackQuery =
+        'SELECT p.first_name as b_first_name, p.first_name as b_first_name, p.last_name as b_last_name, p.handle as b_handle, p.elo as b_elo FROM players p WHERE p._id = $1;';
+
+      let blackRes = await db.query(blackQuery, params);
+
+      console.log(blackRes);
+
+      for (const item in blackRes.rows[0]) {
+        game[item] = blackRes.rows[0][item];
+        // res.locals.gameData[item] = blackRes.rows[0][item];
+      }
+      console.log('GAME', game);
+
+      // White
+      const whiteId = game.white;
+      delete game.white;
+      const params3 = [whiteId];
+      const whiteQuery =
+        'SELECT p.first_name as w_first_name, p.first_name as w_first_name, p.last_name as w_last_name, p.handle as w_handle, p.elo as w_elo FROM players p WHERE p._id = $1;';
+
+      let whiteRes = await db.query(whiteQuery, params3);
+
+      for (const item in whiteRes.rows[0]) {
+        game[item] = whiteRes.rows[0][item];
+        // res.locals.gameData[item] = blackRes.rows[0][item];
+      }
+      console.log('GAME', game);
+
+      res.locals.gameData.push(game);
+    }
+    console.log(res.locals.gameData);
+    return next();
+  } catch (err) {
+    return next({
+      log: 'Error in queryController.getGames. Error: ' + err,
+      message: { err: 'Error in queryController.getGames. See log for more deets' },
     });
   }
 };

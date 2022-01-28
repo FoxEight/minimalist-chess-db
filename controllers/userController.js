@@ -63,7 +63,7 @@ userController.verifyUser = async (req, res, next) => {
   const params = [username];
 
   try {
-    const queryText = 'SELECT password FROM users WHERE username = $1';
+    const queryText = 'SELECT password, _id FROM users WHERE username = $1';
     const queryRes = await db.query(queryText, params);
     // console.log('after db query looking for pw');
     // console.log('query res', queryRes);
@@ -77,6 +77,7 @@ userController.verifyUser = async (req, res, next) => {
       const match = await bcrypt.compare(password, dbPass);
       // console.log('after bcrypt compare');
       match ? (res.locals.verified = true) : (res.locals.verified = false);
+      res.locals.curUserId = queryRes.rows[0]._id;
       return next();
     }
   } catch (err) {
