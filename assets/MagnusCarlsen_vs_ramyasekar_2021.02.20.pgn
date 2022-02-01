@@ -1,0 +1,41 @@
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2021.02.20"]
+[Round "-"]
+[White "MagnusCarlsen"]
+[Black "ramyasekar"]
+[Result "1-0"]
+[CurrentPosition "r4bk1/1qp4P/p2p1Q2/1p1P4/5P2/4rN2/PPP5/2KR3R b - -"]
+[Timezone "UTC"]
+[ECO "C22"]
+[ECOUrl "https://www.chess.com/openings/Center-Game-Accepted-Hall-Variation"]
+[UTCDate "2021.02.20"]
+[UTCTime "18:02:59"]
+[WhiteElo "2810"]
+[BlackElo "259"]
+[TimeControl "600+2"]
+[Termination "MagnusCarlsen won by checkmate"]
+[StartTime "18:02:59"]
+[EndDate "2021.02.20"]
+[EndTime "18:14:27"]
+[Link "https://www.chess.com/game/live/7583023949"]
+
+1. e4 e5 2. d4 exd4 3. Qxd4 Nc6 4. Qc4 Nf6 5. Nc3 d6 6. f3 Be7 7. Be3 O-O 8.
+O-O-O Be6 9. Qe2 a6 10. g4 Nd7 11. h4 b5 12. g5 Nce5 13. Nd5 Bxd5 14. exd5 ± Re8
+15. Qg2 Bf8 16. Bd4 Qb8? {MISTAKE (+3.57)} ({(+0.94) The best move was} 16... c5
+17. dxc6 Nxc6 18. Ne2 g6 19. h5 Nxd4 20. Nxd4 Bg7 21. Nc6 Qc7 22. Nb4 Nb6 23. f4
+Rac8 24. a3 gxh5 25. Rxh5 Nc4 26. Nd5 Bxb2+ 27. Kb1) 17. h5? {MISTAKE (+1.95)}
+({(+3.57) The best move was} 17. f4 Nc4 18. g6 fxg6 19. h5 gxh5 20. Qh3 Re7 21.
+Qxh5 g6 22. Qh4 Qb7 23. b3 Ncb6 24. f5 Ne5 25. Nh3 c5 26. Bb2 gxf5 27. Nf4 Ng6)
+17... Qb7 {INACCURACY (+3.23)} ({(+1.95) The best move was} 17... c5 18. dxc6
+Nxc6 19. Bc3 b4 20. Bd2 d5 21. Ne2 Qc7 22. g6 Nb6 23. Bf4 Qd7 24. Kb1 Ne5 25.
+Ng3 Kh8 26. Bxe5 Rxe5 27. f4) 18. f4 Nc4 19. g6 Ne3? {MISTAKE (+5.00)} ({(+3.14)
+The best move was} 19... fxg6 20. hxg6 h6 21. Qf3 Re7 22. b3 Ncb6 23. Rh5 Rae8
+24. Bh3 Nc5 25. Bxc5 dxc5 26. Be6+ Rxe6 27. dxe6 Qxf3 28. Nxf3 Rxe6 29. Rd8 Rxg6
+30. Rxc5) 20. gxf7+ Kxf7 21. Bxe3 Rxe3 22. Nf3 Kg8 23. Bd3 Nf6 24. h6 g6?
+{MISTAKE (+7.89)} ({(+5.21) The best move was} 24... c5 25. dxc6 Qxc6 26. Bxh7+
+Nxh7 27. hxg7 Qxf3 28. gxf8=Q+ Kxf8 29. Qxf3 Rxf3 30. Rxh7 Kg8 31. Rd7 Rxf4 32.
+R7xd6 Kf8) 25. Bxg6 hxg6?? {BLUNDER (♔ Mate in 4)} ({(+7.59) The best move was}
+25... c6 26. dxc6 Qe7 27. c7 Re2 28. Qg5 Kh8 29. Bf5 Ng8 30. Rhg1 Qxg5 31. fxg5
+Re7 32. c8=R Rxc8 33. Bxc8 a5 34. Rxd6 Re1+ 35. Rxe1) 26. Qxg6+ Kh8 27. Qxf6+
+Kg8 28. h7# 1-0

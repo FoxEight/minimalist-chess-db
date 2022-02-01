@@ -1,0 +1,45 @@
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2021.04.22"]
+[Round "-"]
+[White "Firouzja2003"]
+[Black "DanielNaroditsky"]
+[Result "1-0"]
+[CurrentPosition "8/8/6NP/1p3p2/1k3P2/1P6/2K2b2/8 b - -"]
+[Timezone "UTC"]
+[ECO "E60"]
+[ECOUrl "https://www.chess.com/openings/Kings-Indian-Defense-3.Nf3"]
+[UTCDate "2021.04.22"]
+[UTCTime "22:07:05"]
+[WhiteElo "3143"]
+[BlackElo "3048"]
+[TimeControl "180"]
+[Termination "Firouzja2003 won by resignation"]
+[StartTime "22:07:05"]
+[EndDate "2021.04.22"]
+[EndTime "22:12:12"]
+[Link "https://www.chess.com/game/live/12868420313"]
+
+1. d4 Nf6 2. Nf3 g6 3. c4 Bg7 4. Nc3 O-O 5. e4 d6 6. Be2 e5 7. dxe5 dxe5 8. Qxd8
+Rxd8 9. Bg5 Re8 10. Nd5 Nxd5 11. cxd5 c6 12. Bc4 cxd5 13. Bxd5 Nd7 14. Nd2 Nc5
+15. Ke2 Ne6 16. Be3 Nf4+ 17. Bxf4 {Critical move.} 17... exf4 18. Rac1 Be6 19.
+Bxe6 Rxe6 20. b3 Rd8 21. Rhd1 f3+ 22. Nxf3 Rxe4+ 23. Kf1 □ Rxd1+ 24. Rxd1 Bf6
+25. g3 a5 26. Rd5 a4 27. Rb5 axb3 28. axb3 Re7 {Critical move.} 29. Nd2 Bd4 30.
+Nc4 Kg7 31. Rd5 Ba7 32. Nd6 Bb8 33. Nb5 Re5 34. Rxe5 Bxe5 35. Ke2 Kf6 36. Kd3
+Bb8 37. Nc3 Ba7 38. Ne4+ Ke5 39. f3 f5? {MISTAKE (+1.43)} ({(-0.38) The best
+move was} 39... h6 40. f4+ Ke6 41. Nd2 Kd5 42. Nf3 Bb8 43. Nd4 Kc5 44. Nc2 h5
+45. Ke4 f5+ 46. Ke3 Bc7 47. Kf3 Bd8 48. h3) 40. f4+ ± Kd5 41. Nf6+ Kc5
+{INACCURACY (+3.29)} ({(+2.28) The best move was} 41... Kd6 42. Nxh7 Bg1 43. h3
+Ke7 44. Ke2 Bd4 45. Ng5 Kf6 46. Nf3 Bc5 47. Kd3 Ke6 48. Kc4 Bf2 49. g4 Be3 50.
+Nd4+ Kf7 51. Ne2 Ke6 52. g5 Kd6) 42. Nxh7 Kb4 43. Kc2 {INACCURACY (+1.76)}
+({(+3.17) The best move was} 43. Nf8 Kxb3 44. Nxg6 b5 45. Ne7 Bc5 46. Nxf5 b4
+47. Nh4 Ka2 48. Nf3 b3 49. Nd2 b2 50. Kc2 Bb6 51. Nb1 Be3 52. Nc3+ Ka1 53. f5
+Bd4 54. g4 b1=Q+ 55. Nxb1) 43... Bc5 44. Ng5 b5? {MISTAKE (+5.32)} ({(+1.49) The
+best move was} 44... Bd4 45. Nf3 Bf6 46. h3 Kc5 47. Kd3 Kd5 48. Nd2 Bd8 49. Nc4
+b5 50. Ne3+ Kc5 51. Nc2 Be7 52. Nd4 Bf6 53. Nf3 Kd5 54. g4 fxg4 55. hxg4 Be7 56.
+Ne5 g5) 45. Nf3 Bf2 46. Ne5 Bg1 47. h4 Bf2 {INACCURACY (+9.26)} ({(+7.25) The
+best move was} 47... Kc5 48. Nxg6 Kd5 49. h5 Ke6 50. h6 Kf6 51. h7 Kxg6 52. h8=Q
+Kf7 53. Qe5 Bf2 54. Qxb5 Kg6 55. Qe8+ Kf6 56. Qe5+ Kf7 57. Qxf5+ Ke7 58. Kd3 Kd8
+59. b4 Kc7 60. g4 Kd6 61. Qe5+ Kc6 62. b5+ Kd7 63. g5) 48. Nxg6 Bxg3 49. h5 Bf2
+50. h6 (50. h6 Bd4 51. Ne5 Kc5 52. h7 Kd5 53. h8=Q Ke4 54. b4 Be3 55. Nd3 Kf3
+56. Qh3+ Ke4 57. Qh5 Bxf4 58. Qh1+ Kd4) 1-0
