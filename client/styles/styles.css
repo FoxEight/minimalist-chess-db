@@ -7,6 +7,11 @@
   box-shadow: 5px 2px 2px 1px #555;
 }
 
+.board-embed-container button {
+  display: block;
+  margin-bottom: 15px;
+}
+
 .center-container {
   width: 1000px;
   margin: 50px auto;
