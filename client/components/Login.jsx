@@ -55,7 +55,7 @@ export default function (props) {
         <label htmlFor="password-login">
           Password ---
           <input
-            type="text"
+            type="password"
             id="password-login"
             name="password-login"
             value={passwordLogin}
