@@ -1,3 +1,20 @@
+.login-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-btn {
+  display: inline-block;
+  width: 200px;
+  color: #333;
+}
+
+input[type='submit'].login-btn:hover {
+  cursor: pointer;
+  color: red;
+}
+
 .board-embed-frame {
   width: 700px;
   height: 450px;

@@ -41,7 +41,7 @@ export default function (props) {
     <div>
       <h2>This is the Login Page</h2>
       {props.logInAttemptMsg ? <p>{props.logInAttemptMsg}</p> : <p></p>}
-      <form crossOrigin="anonymous" onSubmit={handleOnSubmitLogin}>
+      <form className="login-content" crossOrigin="anonymous" onSubmit={handleOnSubmitLogin}>
         <label htmlFor="username-login">
           Username ---
           <input
@@ -62,7 +62,7 @@ export default function (props) {
             onChange={handlePasswordLoginChange}
           />
         </label>
-        <input type="submit" value="Log in" />
+        <input className="login-btn" type="submit" value="Log in" />
       </form>
       <br></br>
       <button onClick={props.handleCreateClick}>Create Account</button>
