@@ -10,6 +10,10 @@
   color: #333;
 }
 
+.login-input {
+  margin-left: 10px;
+}
+
 input[type='submit'].login-btn:hover {
   cursor: pointer;
   color: red;

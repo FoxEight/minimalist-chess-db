@@ -43,8 +43,9 @@ export default function (props) {
       {props.logInAttemptMsg ? <p>{props.logInAttemptMsg}</p> : <p></p>}
       <form className="login-content" crossOrigin="anonymous" onSubmit={handleOnSubmitLogin}>
         <label htmlFor="username-login">
-          Username ---
+          Username
           <input
+            className="login-input"
             type="text"
             id="username-login"
             name="username-login"
@@ -53,8 +54,9 @@ export default function (props) {
           />
         </label>
         <label htmlFor="password-login">
-          Password ---
+          Password
           <input
+            className="login-input"
             type="password"
             id="password-login"
             name="password-login"
