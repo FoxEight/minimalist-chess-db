@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  background-color: #eee;
+  padding: 10px;
+  width: 300px;
 }
 
 .login-btn {
