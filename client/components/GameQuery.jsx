@@ -30,7 +30,7 @@ class GameQuery extends Component {
       // }
       console.log(date, w_first_name);
       resultSpanArr.push(
-        <div>
+        <div className="query-result">
           <span>
             {w_first_name} {w_last_name}, {w_elo} (W) vs. {b_first_name} {b_last_name}, {b_elo} (B)
             - {date} - Result: {termination} -->
