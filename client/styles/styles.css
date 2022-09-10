@@ -46,10 +46,17 @@ input[type='submit'].login-btn:hover {
   width: 800px;
   background-color: white;
   padding-top: 10px;
+  padding-right: 10px;
 }
 
 .the-query-display ul {
   list-style: none;
+}
+
+.query-result {
+  margin-bottom: 8px;
+  padding: 2px 5px;
+  background-color: #ddd;
 }
 
 body {
