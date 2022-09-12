@@ -38,7 +38,7 @@ export default function (props) {
   }
 
   return (
-    <div>
+    <div className="login-container">
       <h2>This is the Login Page</h2>
       {props.logInAttemptMsg ? <p>{props.logInAttemptMsg}</p> : <p></p>}
       <form className="login-content" crossOrigin="anonymous" onSubmit={handleOnSubmitLogin}>
