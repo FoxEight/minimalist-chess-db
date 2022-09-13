@@ -67,7 +67,10 @@ export default function (props) {
         <input className="login-btn" type="submit" value="Log in" />
       </form>
       <br></br>
-      <button onClick={props.handleCreateClick}>Create Account</button>
+      <div className="create-account-container">
+        <h2>No Account? No problem!</h2>
+        <button onClick={props.handleCreateClick}>Create Account</button>
+      </div>
     </div>
   );
 }
