@@ -14,8 +14,9 @@
 
 .login-btn {
   display: inline-block;
-  width: 200px;
+  width: 150px;
   color: #333;
+  margin: 0px auto;
 }
 
 .login-input {
