@@ -33,6 +33,11 @@ input[type='submit'].login-btn:hover {
   margin-bottom: 6px;
 }
 
+.create-account-container > button {
+  color: #333;
+  padding: 2px 6px;
+}
+
 .board-embed-frame {
   width: 700px;
   height: 450px;
